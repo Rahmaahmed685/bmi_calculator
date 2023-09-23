@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:bmi_calculator/colors.dart';
 import 'package:bmi_calculator/screens/bmi_result.dart';
@@ -13,8 +12,8 @@ class BmiCalcScreen extends StatefulWidget {
 
 class _BmiCalcScreenState extends State<BmiCalcScreen> {
   bool male =true;
-  int age = 0;
-  int weight = 0;
+  int age = 15;
+  int weight = 60;
   double height = 170;
 
   @override
@@ -128,7 +127,7 @@ class _BmiCalcScreenState extends State<BmiCalcScreen> {
                       ),
                   Slider(
                     min: 0,
-                    max: 200,
+                    max: 250,
                     value: height,
                     onChanged: (value) {
                       height = value;
@@ -244,7 +243,6 @@ class _BmiCalcScreenState extends State<BmiCalcScreen> {
                                 child: Icon(Icons.add),
                                 backgroundColor: Colors.grey,
                               ),
-
                           ],
                         ),
                       ],
@@ -259,8 +257,7 @@ class _BmiCalcScreenState extends State<BmiCalcScreen> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                double result = 19.2;
-
+                double result = weight  / (height/100) / (height/100);
                Navigator.push(context,
                  MaterialPageRoute(
                      builder: (context) => BmiResultScreen(result: result,))

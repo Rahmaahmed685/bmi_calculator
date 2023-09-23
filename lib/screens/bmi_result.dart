@@ -1,7 +1,5 @@
 import 'package:bmi_calculator/colors.dart';
 import 'package:flutter/material.dart';
-
-
 class BmiResultScreen extends StatelessWidget {
   final double result;
 
@@ -9,7 +7,6 @@ class BmiResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: mainColor,
       body: SafeArea(
@@ -39,22 +36,25 @@ class BmiResultScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        "NORMAL",
+                      //  "Normal Weight",
+                       "overweight ",
                         style: TextStyle(
-                          color: Colors.green,
+                          color: pinkColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
                       Text(
-                        result.toString(),
+                        result.toStringAsFixed(2),
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,
                           fontSize: 88,
                         ),
                       ),
-                      Text("You Have A Normal Body Weight.\n Good Job!",
+                      Text(
+                       "You need to lose 5.2 kg in order to reach normal weight (74.8)",
+                     //   "You Have A Normal Body Weight.\n Good Job!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -81,5 +81,28 @@ class BmiResultScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  void printData(){
+    if(result < 16){
+      var val = "Extreme thinness";
+    }
+    else if(result > 16 || result < 17){
+      var val ="Moderate thinness";
+    }
+  else if(result > 16 || result < 17){
+  var val ="Light thinness";
+  }else if(result > 17 || result < 18.5){
+  var val ="Normal weight";
+  }else if(result > 18.5 || result < 25){
+  var val ="overweight";
+  }else if(result > 25 || result < 30){
+  var val ="Class A obesity";
+  }else if(result > 30 || result < 35){
+  var val ="Class B obesity";
+  }else if(result > 35 || result < 40){
+  var val ="Class C obesity";
+  }else{
+    var val = "Over obesity ";
+  }
   }
 }
