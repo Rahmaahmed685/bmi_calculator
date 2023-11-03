@@ -1,9 +1,41 @@
 import 'package:bmi_calculator/colors.dart';
 import 'package:flutter/material.dart';
-class BmiResultScreen extends StatelessWidget {
+class BmiResultScreen extends StatefulWidget {
   final double result;
 
   const BmiResultScreen({super.key, required this.result});
+
+  @override
+  State<BmiResultScreen> createState() => _BmiResultScreenState();
+}
+
+class _BmiResultScreenState extends State<BmiResultScreen> {
+
+  printData(){
+    String val = '';
+    if(widget.result < 16){
+       val = "Extreme thinness";
+    }
+    else if(widget.result > 16 || widget.result < 17){
+       val ="Moderate thinness";
+    }
+    else if(widget.result > 16 || widget.result < 17){
+       val ="Light thinness";
+    }else if(widget.result > 17 || widget.result < 18.5){
+       val ="Normal weight";
+    }else if(widget.result > 18.5 || widget.result < 25){
+       val ="overweight";
+    }else if(widget.result > 25 || widget.result < 30){
+       val ="Class A obesity";
+    }else if(widget.result > 30 || widget.result < 35){
+       val ="Class B obesity";
+    }else if(widget.result > 35 || widget.result < 40){
+       val ="Class C obesity";
+    }else{
+       val = "Over obesity ";
+    }
+    return val;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +68,7 @@ class BmiResultScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                      //  "Normal Weight",
-                       "overweight ",
+                        printData(),
                         style: TextStyle(
                           color: pinkColor,
                           fontWeight: FontWeight.bold,
@@ -45,7 +76,7 @@ class BmiResultScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        result.toStringAsFixed(2),
+                        widget.result.toStringAsFixed(2),
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,
@@ -53,8 +84,7 @@ class BmiResultScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                       "You need to lose 5.2 kg in order to reach normal weight (74.8)",
-                     //   "You Have A Normal Body Weight.\n Good Job!",
+                        "You Have A Normal Body Weight.\n Good Job!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -82,27 +112,6 @@ class BmiResultScreen extends StatelessWidget {
       ),
     );
   }
-  void printData(){
-    if(result < 16){
-      var val = "Extreme thinness";
-    }
-    else if(result > 16 || result < 17){
-      var val ="Moderate thinness";
-    }
-  else if(result > 16 || result < 17){
-  var val ="Light thinness";
-  }else if(result > 17 || result < 18.5){
-  var val ="Normal weight";
-  }else if(result > 18.5 || result < 25){
-  var val ="overweight";
-  }else if(result > 25 || result < 30){
-  var val ="Class A obesity";
-  }else if(result > 30 || result < 35){
-  var val ="Class B obesity";
-  }else if(result > 35 || result < 40){
-  var val ="Class C obesity";
-  }else{
-    var val = "Over obesity ";
-  }
-  }
+
+
 }

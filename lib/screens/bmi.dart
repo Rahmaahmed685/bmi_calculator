@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:bmi_calculator/colors.dart';
 import 'package:bmi_calculator/screens/bmi_result.dart';
 import 'package:flutter/material.dart';
@@ -257,10 +259,11 @@ class _BmiCalcScreenState extends State<BmiCalcScreen> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                double result = weight  / (height/100) / (height/100);
+                double result = weight / pow( height / 100, 2);
                Navigator.push(context,
                  MaterialPageRoute(
-                     builder: (context) => BmiResultScreen(result: result,))
+                     builder: (context)
+                     => BmiResultScreen(result: result,))
                );
               },
 
